@@ -182,6 +182,7 @@ __global__ void gpu_grayscale(int width, int height, float *image, float *image_
     ///////////////////////////////////////////////////////////
     long long x = blockIdx.x * blockDim.x + threadIdx.x;
     long long y = blockIdx.y * blockDim.y + threadIdx.y;
+    printf("x is %ld\n", x);
     long index = y * width + x; // y = 1 is responsible for the first row
     long pixel_index = index * 3; // 3 lights = 1 pixel
 
@@ -354,7 +355,7 @@ int main(int argc, char **argv)
     {
         // Launch the CPU version
         gettimeofday(&t[0], NULL);
-        cpu_grayscale(bitmap.width, bitmap.height, bitmap.data, image_out[0]);
+        //cpu_grayscale(bitmap.width, bitmap.height, bitmap.data, image_out[0]);
         gettimeofday(&t[1], NULL);
 
         elapsed[0] = get_elapsed(t[0], t[1]);
